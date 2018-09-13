@@ -11,6 +11,8 @@
 		8540AD5C21453A9100716014 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540AD5B21453A9100716014 /* ViewController.swift */; };
 		8540AD5E21453A9200716014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8540AD5D21453A9200716014 /* Assets.xcassets */; };
 		8540AD6121453A9200716014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8540AD5F21453A9200716014 /* Main.storyboard */; };
+		857F928121493923004834A4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F927F21493923004834A4 /* Card.swift */; };
+		857F928221493923004834A4 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857F928021493923004834A4 /* Card.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		8540AD6021453A9200716014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8540AD6221453A9200716014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8540AD6321453A9200716014 /* Taggy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Taggy.entitlements; sourceTree = "<group>"; };
+		857F927F21493923004834A4 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		857F928021493923004834A4 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +57,48 @@
 		8540AD5821453A9100716014 /* Taggy */ = {
 			isa = PBXGroup;
 			children = (
-				8540AD5921453A9100716014 /* AppDelegate.swift */,
-				8540AD5B21453A9100716014 /* ViewController.swift */,
+				8583C4C0214A625C00CAE2D9 /* Controller */,
+				8583C4BF214A625200CAE2D9 /* View */,
+				8583C4C2214A627700CAE2D9 /* Model */,
+				8583C4C3214A628500CAE2D9 /* Products */,
 				8540AD5D21453A9200716014 /* Assets.xcassets */,
-				8540AD5F21453A9200716014 /* Main.storyboard */,
 				8540AD6221453A9200716014 /* Info.plist */,
 				8540AD6321453A9200716014 /* Taggy.entitlements */,
 			);
 			path = Taggy;
+			sourceTree = "<group>";
+		};
+		8583C4BF214A625200CAE2D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				857F927F21493923004834A4 /* Card.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8583C4C0214A625C00CAE2D9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8540AD5921453A9100716014 /* AppDelegate.swift */,
+				8540AD5B21453A9100716014 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8583C4C2214A627700CAE2D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8583C4C3214A628500CAE2D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8540AD5F21453A9200716014 /* Main.storyboard */,
+				857F928021493923004834A4 /* Card.xib */,
+			);
+			path = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8540AD5E21453A9200716014 /* Assets.xcassets in Resources */,
+				857F928221493923004834A4 /* Card.xib in Resources */,
 				8540AD6121453A9200716014 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8540AD5C21453A9100716014 /* ViewController.swift in Sources */,
+				857F928121493923004834A4 /* Card.swift in Sources */,
 				8540AD5A21453A9100716014 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
