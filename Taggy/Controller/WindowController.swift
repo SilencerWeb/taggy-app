@@ -10,5 +10,4 @@ class WindowController: NSWindowController {
             window.center()
         }
     }
-
 }

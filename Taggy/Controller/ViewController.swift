@@ -1,4 +1,3 @@
- import Cocoa
 import PureLayout
 
 class ViewController: NSViewController {
@@ -91,10 +90,12 @@ class ViewController: NSViewController {
                 let searchingWords = searchingArray.filter { !$0.hasPrefix("#") }
                 
                 searchingTags.forEach { searchingTag in
+                    if !isValidByTags { return }
+                    
                     var isValidTag = false
     
-                    cardData.tags.forEach { cardDataTag in
-                        if cardDataTag.lowercased() == searchingTag.lowercased() {
+                    cardData.tags.forEach { tag in
+                        if tag.lowercased() == searchingTag.lowercased() {
                             isValidTag = true
                         }
                     }
@@ -105,10 +106,36 @@ class ViewController: NSViewController {
                 }
                 
                 searchingWords.forEach { searchingWord in
-                    if !(cardData.label != nil && (cardData.label?.lowercased().contains(searchingWord.lowercased()))!) && !cardData.text.lowercased().contains(searchingWord.lowercased()) {
+                    if !(cardData.label != nil && (cardData.label?.lowercased().contains(searchingWord.lowercased()))!) {
+                        isValidByWords = false
+                    }
+                    
+                    if !cardData.text.lowercased().contains(searchingWord.lowercased()) {
                         isValidByWords = false
                     }
                 }
+                
+//                searchingWords.forEach { searchingWord in
+//                    if !isValidByWords { return }
+//
+//                    var isValidWord = false
+//
+//                    cardData.label?.split(separator: " ").forEach { word in
+//                        if word.lowercased() == searchingWord.lowercased() {
+//                            isValidWord = true
+//                        }
+//                    }
+//
+//                    cardData.text.split(separator: " ").forEach { word in
+//                        if word.lowercased() == searchingWord.lowercased() {
+//                            isValidWord = true
+//                        }
+//                    }
+//
+//                    if !isValidWord {
+//                        isValidByWords = false
+//                    }
+//                }
             }
             
             return isValidByTags && isValidByWords
@@ -117,11 +144,14 @@ class ViewController: NSViewController {
     
     func configureSearch() {
         search.placeholderString = "Enter one or more tags devided by space and some words. For example, #link #work Design"
-        search.layer = CALayer()
-        search.delegate = self
+        search.textColor = NSColor.textPrimary
+        search.isBordered = false
         
-        search.layer?.backgroundColor = .white
+        search.wantsLayer = true
+        search.layer?.backgroundColor = NSColor.secondary.cgColor
         search.layer?.cornerRadius = 16
+        
+        search.delegate = self
         
         searchView.addSubview(search)
         
@@ -146,12 +176,10 @@ class ViewController: NSViewController {
         
         cardList.collectionViewLayout = flowLayout
         
-        cardList.frame = NSRect(x: 0, y: 0, width: 1200, height: 628)
         cardList.delegate = self
         cardList.dataSource = self
         
-        let nib = NSNib(nibNamed: NSNib.Name(rawValue: "Card"), bundle: nil)
-        cardList.register(nib, forItemWithIdentifier: cardId)
+        cardList.register(Card.self, forItemWithIdentifier: cardId)
         
         view.addSubview(cardList)
         

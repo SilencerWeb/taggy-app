@@ -1,4 +1,3 @@
-import Cocoa
 import PureLayout
 
 class Card: NSCollectionViewItem {
@@ -6,15 +5,34 @@ class Card: NSCollectionViewItem {
     let linkView = NSTextView()
     let textView = NSTextView()
     
-    var data: (type: String, label: String?, text: String, link: String?, tags: [String])?
+    var data: (type: String, label: String?, text: String, link: String?, tags: [String])? {
+        didSet {
+            guard isViewLoaded else { return }
+            
+            if ((data?.text) != nil) {
+               configureView()
+            }
+        }
+    }
     
     func configureLabelView() {
-        labelView.font = NSFont(name: "SF Pro Display Medium", size: 15)
+        let string = (data?.label)!
+        
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.setAttributes(
+            [
+                .font: NSFont(name: "SF Pro Display Medium", size: 15)!,
+                .foregroundColor: NSColor.textPrimary
+            ],
+            range: NSRange(location: 0, length: string.count)
+        )
+        
+        labelView.textStorage?.setAttributedString(attributedString)
+        
         labelView.isEditable = false
         labelView.isFieldEditor = false
-        labelView.isHidden = false
         
-        labelView.string = (data?.label)!
+        view.addSubview(labelView)
         
         labelView.autoSetDimension(.height, toSize: 16)
         labelView.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
@@ -23,21 +41,26 @@ class Card: NSCollectionViewItem {
     }
     
     func configureLinkView() {
-        linkView.font = NSFont(name: "SF Pro Display", size: 13)
-        linkView.isEditable = false
-        linkView.isFieldEditor = false
-        linkView.isHidden = false
+        let string = (URL(string: (data?.link)!)?.host)!
         
-        linkView.string = (URL(string: (data?.link)!)?.host)!
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.setAttributes(
+            [
+                .font: NSFont(name: "SF Pro Display", size: 13)!,
+                .foregroundColor: NSColor.textPrimary,
+                .link: URL(string: (data?.link)!)!
+            ],
+           range: NSRange(location: 0, length: string.count)
+        )
         
-        let attributedString = NSMutableAttributedString(string: linkView.string)
-        let range = NSRange(location: 0, length: linkView.string.count)
-        let url = URL(string: (data?.link)!)
-        
-        attributedString.setAttributes([.link: url!], range: range)
         linkView.textStorage?.setAttributedString(attributedString)
         
         linkView.linkTextAttributes = [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+        
+        linkView.isEditable = false
+        linkView.isFieldEditor = false
+        
+        view.addSubview(linkView)
         
         linkView.autoSetDimension(.height, toSize: 16)
         linkView.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
@@ -46,12 +69,27 @@ class Card: NSCollectionViewItem {
     }
     
     func configureTextView() {
-        textView.font = NSFont(name: "SF Pro Display", size: 13)
-        textView.textContainer?.lineBreakMode = .byTruncatingTail
+        let string = (data?.text)!
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1.3
+        
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.setAttributes(
+            [
+                .font: NSFont(name: "SF Pro Display", size: 13)!,
+                .foregroundColor: NSColor.textPrimary,
+                .paragraphStyle: paragraphStyle
+            ],
+            range: NSRange(location: 0, length: string.count)
+        )
+        
+        textView.textStorage?.setAttributedString(attributedString)
+        
         textView.isEditable = false
         textView.isFieldEditor = false
         
-        textView.string = (data?.text)!
+        view.addSubview(textView)
         
         if data?.label != nil && (data?.label?.count)! > 0 {
             configureLabelView()
@@ -73,19 +111,19 @@ class Card: NSCollectionViewItem {
         textView.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        
+    func configureView() {
+        view.wantsLayer = true
+        view.layer?.borderColor = NSColor(hex: "f5f5f5").cgColor
         view.layer?.borderWidth = 1
-        view.layer?.borderColor = .black
-        
-        view.addSubview(labelView)
-        view.addSubview(textView)
-        view.addSubview(linkView)
-        
-        labelView.isHidden = true
-        linkView.isHidden = true
-        
+    
         configureTextView()
+    }
+    
+    override func mouseMoved(with event: NSEvent) {
+        NSCursor.pointingHand.set()
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+       
     }
 }
