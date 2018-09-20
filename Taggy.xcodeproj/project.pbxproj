@@ -14,8 +14,8 @@
 		8540AD5E21453A9200716014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8540AD5D21453A9200716014 /* Assets.xcassets */; };
 		8540AD6121453A9200716014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8540AD5F21453A9200716014 /* Main.storyboard */; };
 		857F928121493923004834A4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F927F21493923004834A4 /* Card.swift */; };
-		857F928221493923004834A4 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857F928021493923004834A4 /* Card.xib */; };
 		8588C45F214E28FC00A9C9AA /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588C45E214E28FC00A9C9AA /* WindowController.swift */; };
+		85B2C6FE2153BA7500EA6552 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85B2C6FD2153BA7500EA6552 /* Card.xib */; };
 		A76C7A9CB6AF30B4B2AE13A3 /* Pods_Taggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7713CA52118470FC67E71F81 /* Pods_Taggy.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,8 +33,8 @@
 		8540AD6221453A9200716014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8540AD6321453A9200716014 /* Taggy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Taggy.entitlements; sourceTree = "<group>"; };
 		857F927F21493923004834A4 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		857F928021493923004834A4 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		8588C45E214E28FC00A9C9AA /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		85B2C6FD2153BA7500EA6552 /* Card.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				8540AD5F21453A9200716014 /* Main.storyboard */,
-				857F928021493923004834A4 /* Card.xib */,
+				85B2C6FD2153BA7500EA6552 /* Card.xib */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -195,7 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8540AD5E21453A9200716014 /* Assets.xcassets in Resources */,
-				857F928221493923004834A4 /* Card.xib in Resources */,
+				85B2C6FE2153BA7500EA6552 /* Card.xib in Resources */,
 				8540AD6121453A9200716014 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
